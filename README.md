@@ -6,4 +6,4 @@ This template is a part of our hiring process at Kisso for Full Stack Engineers.
 
 **Feel free to apply! Drop us a line with your LinkedIn/GitHub/Twitter at squad@kissohq.com**
 
-Light weight **React app Template** using [create-react-app](./README.cra.md).
+Light weight **React** app template using [create-react-app](./README.cra.md).
