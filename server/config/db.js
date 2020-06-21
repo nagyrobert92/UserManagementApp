@@ -6,7 +6,8 @@ const connectDB = () => {
   mongoose
     .connect(db, {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
+      useCreateIndex: true
     })
     .then(() => console.log("MongoDB connected"))
     .catch(err => {
