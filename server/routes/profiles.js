@@ -16,9 +16,38 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
-router.post("/", (req, res) => {
-  res.send("Add profile");
-});
+router.post(
+  "/",
+  [
+    auth,
+    [
+      check("firstName", "Firstname is required")
+        .not()
+        .isEmpty()
+    ]
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const { firstName, lastName, job, email } = req.body;
+    try {
+      const newProfile = new Profile({
+        firstName,
+        lastName,
+        job,
+        email,
+        user: req.user.id
+      });
+      const profile = await newProfile.save();
+      res.json(profile);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
 
 router.put("/:id", (req, res) => {
   res.send("Update profile");
