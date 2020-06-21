@@ -1,5 +1,9 @@
 const express = require("express");
 const app = express();
+const connectDB = require("./config/db");
+
+//Connect database
+connectDB();
 
 app.get("/", function(req, res) {
   res.send("Hello Kisso!");
