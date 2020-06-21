@@ -5,6 +5,9 @@ const connectDB = require("./config/db");
 //Connect database
 connectDB();
 
+//Middleware, bodyparser replacement
+app.use(express.json({ extended: false }));
+
 app.get("/", function(req, res) {
   res.send("Hello Kisso!");
 });
