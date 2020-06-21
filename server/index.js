@@ -1,10 +1,15 @@
 const express = require("express");
 const app = express();
 
-app.get("/", function (req, res) {
+app.get("/", function(req, res) {
   res.send("Hello Kisso!");
 });
 
-app.listen(3000, function () {
+//Routes
+app.use("/users", require("./routes/users"));
+app.use("/auth", require("./routes/auth"));
+app.use("/profiles", require("./routes/profiles"));
+
+app.listen(3000, function() {
   console.log("app listening on port 3000!");
 });
