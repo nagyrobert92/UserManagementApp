@@ -1,2 +1,4 @@
 export const ADD_PROFILE = "ADD_PROFILE";
 export const DELETE_PROFILE = "DELETE_PROFILE";
+export const FILTER_PROFILE = "FILTER_PROFILE";
+export const CLEAR_FILTER = "CLEAR_FILTER";
