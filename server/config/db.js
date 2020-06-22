@@ -7,7 +7,8 @@ const connectDB = () => {
     .connect(db, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useCreateIndex: true
+      useCreateIndex: true,
+      useFindAndModify: false
     })
     .then(() => console.log("MongoDB connected"))
     .catch(err => {
