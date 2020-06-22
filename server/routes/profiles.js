@@ -53,8 +53,19 @@ router.put("/:id", (req, res) => {
   res.send("Update profile");
 });
 
-router.delete("/:id", (req, res) => {
-  res.send("Delete profile");
+router.delete("/:id", auth, async (req, res) => {
+  try {
+    let profile = await Profile.findById(req.params.id);
+    if (!profile) return res.status(404).json({ msg: "Profile not found" });
+    if (profile.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: "Not authorized" });
+    }
+    await Profile.findByIdAndRemove(req.params.id);
+    res.json({ msg: "Profile removed" });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
 });
 
 module.exports = router;
