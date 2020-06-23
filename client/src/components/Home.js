@@ -1,9 +1,15 @@
-import React from "react";
+import React, {useContext, useEffect} from "react";
 import Profiles from "../components/Profiles";
 import ProfileForm from "./ProfileForm";
 import ProfileFilter from "./ProfileFilter";
+import AuthContext from "../context/auth/authContext"
 
 const Home = () => {
+  const authContext = useContext(AuthContext);
+
+  useEffect(() => {
+    authContext.loadUser();
+  }, []);
   return (
     <div className="flex flex-wrap">
       <div className="w-1/3 ml-auto">
