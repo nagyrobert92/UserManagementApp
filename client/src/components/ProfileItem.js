@@ -3,10 +3,11 @@ import ProfileContext from "../context/profile/profileContext";
 
 const ProfileItem = ({ profile }) => {
   const profileContext = useContext(ProfileContext);
-  const { deleteProfile } = profileContext;
-  const { id, firstName, lastName, email, job } = profile;
+  const { deleteProfile, setCurrent, clearCurrent} = profileContext;
+  const { _id, firstName, lastName, email, job } = profile;
   const onDelete = () => {
-    deleteProfile(id);
+    deleteProfile(_id);
+    clearCurrent();
   };
   return (
     <div className="bg-gray-100  max-w-sm rounded overflow-hidden shadow-lg m-4">
@@ -14,7 +15,7 @@ const ProfileItem = ({ profile }) => {
         {firstName} {lastName}
       </h3>
       <h5 className="text-center bg-orange-300">
-        <i class="fas fa-briefcase" /> {job}
+        <i className="fas fa-briefcase" /> {job}
       </h5>
       <h5 className="text-center">
         <i className="fas fa-envelope-open" /> {email}
